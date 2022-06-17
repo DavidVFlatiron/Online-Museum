@@ -12,7 +12,6 @@ class ApplicationController < Sinatra::Base
       artists.to_json
     end
 
-
     get '/artists/:id' do
       artist = Artist.find(params[:id])
       artist.to_json(include: :paintings)
@@ -30,9 +29,11 @@ class ApplicationController < Sinatra::Base
       art_movement: params[:art_movement],
       birth_place: params[:birth_place],
       birth_date: params[:birth_date]
-    )
-    artist.to_json
-  end
+      )
+      artist.to_json
+    end
+
+
 
     patch '/artists/:id' do
     artist = Artist.find(params[:id])
@@ -42,8 +43,12 @@ class ApplicationController < Sinatra::Base
         birth_place: params[:birth_place],
         birth_date: params[:birth_date]
       )
-    artist.to_json
-  end
+      artist.to_json
+    end
+
+    get '/artists/:id/say_hi' do
+      artist = Artist.find(params[:id]).say_hi
+    end
   
 
   #paintings 
