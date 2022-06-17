@@ -35,6 +35,17 @@ class ApplicationController < Sinatra::Base
     artist.to_json
   end
 
+  patch '/artists/:id' do
+    artist = Artist.find(params[:id])
+    artist.update(
+      name: params[:name],
+      art_movement: params[:art_movement],
+      birth_place: params[:birth_place],
+      birth_date: params[:birth_date]
+    )
+    artist.to_json
+  end
+  
 
   #paintings 
 
@@ -56,6 +67,18 @@ end
 
 post '/paintings' do
   painting = Painting.create(
+    name: params[:name],
+    location: params[:location],
+    medium: params[:medium],
+    year_created: params[:year_created],
+    artist_id: params[:artist_id]
+  )
+  painting.to_json
+end
+
+patch '/paintings/:id' do
+  painting = Painting.find(params[:id])
+  painting.update(
     name: params[:name],
     location: params[:location],
     medium: params[:medium],
