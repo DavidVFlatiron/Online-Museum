@@ -24,7 +24,17 @@ class ApplicationController < Sinatra::Base
     artist.destroy
     artist.to_json
   end
-  
+
+  post '/artists' do
+    artist = Artist.create(
+      name: params[:name],
+      art_movement: params[:art_movement],
+      birth_place: params[:birth_place],
+      birth_date: params[:birth_date]
+    )
+    artist.to_json
+  end
+
 
   #paintings 
 
@@ -44,6 +54,16 @@ delete '/paintings/:id' do
   painting.to_json
 end
 
+post '/paintings' do
+  painting = Painting.create(
+    name: params[:name],
+    location: params[:location],
+    medium: params[:medium],
+    year_created: params[:year_created],
+    artist_id: params[:artist_id]
+  )
+  painting.to_json
+end
   
 
 end
