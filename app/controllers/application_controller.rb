@@ -6,7 +6,6 @@ class ApplicationController < Sinatra::Base
     { message: "Good luck with your project!" }.to_json
   end
 
-
   # Artists 
     get '/artists' do
       artists = Artist.all
@@ -14,19 +13,19 @@ class ApplicationController < Sinatra::Base
     end
 
 
-  get '/artists/:id' do
-    artist = Artist.find(params[:id])
-    artist.to_json(include: :paintings)
-  end
+    get '/artists/:id' do
+      artist = Artist.find(params[:id])
+      artist.to_json(include: :paintings)
+    end
 
-  delete '/artists/:id' do
-    artist = Artist.find(params[:id])
-    artist.destroy
-    artist.to_json
-  end
+    delete '/artists/:id' do
+      artist = Artist.find(params[:id])
+      artist.destroy
+      artist.to_json
+    end
 
-  post '/artists' do
-    artist = Artist.create(
+    post '/artists' do
+     artist = Artist.create(
       name: params[:name],
       art_movement: params[:art_movement],
       birth_place: params[:birth_place],
@@ -35,14 +34,14 @@ class ApplicationController < Sinatra::Base
     artist.to_json
   end
 
-  patch '/artists/:id' do
+    patch '/artists/:id' do
     artist = Artist.find(params[:id])
-    artist.update(
-      name: params[:name],
-      art_movement: params[:art_movement],
-      birth_place: params[:birth_place],
-      birth_date: params[:birth_date]
-    )
+      artist.update(
+        name: params[:name],
+        art_movement: params[:art_movement],
+        birth_place: params[:birth_place],
+        birth_date: params[:birth_date]
+      )
     artist.to_json
   end
   
@@ -54,39 +53,38 @@ class ApplicationController < Sinatra::Base
     paintings.to_json
   end
 
-get '/paintings/:id' do
-  painting = Painting.find(params[:id])
-  painting.to_json(include: :artist)
-end
+  get '/paintings/:id' do
+    painting = Painting.find(params[:id])
+    painting.to_json(include: :artist)
+  end
 
-delete '/paintings/:id' do
-  painting = Painting.find(params[:id])
-  painting.destroy
-  painting.to_json
-end
+  delete '/paintings/:id' do
+    painting = Painting.find(params[:id])
+    painting.destroy
+    painting.to_json
+  end
 
-post '/paintings' do
-  painting = Painting.create(
-    name: params[:name],
-    location: params[:location],
-    medium: params[:medium],
-    year_created: params[:year_created],
-    artist_id: params[:artist_id]
-  )
-  painting.to_json
-end
+  post '/paintings' do
+    painting = Painting.create(
+      name: params[:name],
+      location: params[:location],
+      medium: params[:medium],
+      year_created: params[:year_created],
+      artist_id: params[:artist_id]
+    )
+    painting.to_json
+  end
 
-patch '/paintings/:id' do
-  painting = Painting.find(params[:id])
-  painting.update(
-    name: params[:name],
-    location: params[:location],
-    medium: params[:medium],
-    year_created: params[:year_created],
-    artist_id: params[:artist_id]
-  )
-  painting.to_json
-end
+  patch '/paintings/:id' do
+    painting = Painting.find(params[:id])
+    painting.update(
+      name: params[:name],
+      location: params[:location],
+      medium: params[:medium],
+      year_created: params[:year_created],
+      artist_id: params[:artist_id]
+    )
+    painting.to_json
+  end
   
-
 end
