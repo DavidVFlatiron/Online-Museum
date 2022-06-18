@@ -53,7 +53,7 @@ function NavBar() {
           background: "darkblue",
         }}
       >
-        Login
+        Add a painting
       </NavLink>
     </div>
   );

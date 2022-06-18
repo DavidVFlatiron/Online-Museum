@@ -3,22 +3,24 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
-import Login from "./Login";
+import AddAPainting from "./AddAPainting";
 import NavBar from "./NavBar";
-import Painting from "./Painting";
+import Paintings from "./Paintings";
+import PaintingDetail from "./PaintingDetail";
 import Artists from "./Artists";
 import '../App.css';
 
 function App() {
     const [paintings, setPaintings] = useState([]);
     const [artists, setArtists] = useState([]);
+    const [refresh,setRefresh] = useState(false)
     useEffect(() => {
       fetch("http://localhost:9292/paintings")
         .then((response) => response.json())
         .then((data) => {
           setPaintings(data);
         });
-    }, []);
+    }, [refresh]);
     useEffect(() => {
         fetch("http://localhost:9292/artists")
           .then((response) => response.json())
@@ -36,13 +38,16 @@ function App() {
           <About />
         </Route>
         <Route exact path="/paintings">
-          <Painting paintings={paintings}/>
+          <Paintings paintings={paintings}/>
+        </Route>
+        <Route exact path="/paintings/:id">
+          <PaintingDetail/>
         </Route>
         <Route exact path="/artists">
           <Artists artists={artists}/>
         </Route>
         <Route exact path="/login">
-          <Login />
+          <AddAPainting setRefresh={setRefresh} refresh={refresh} />
         </Route>
         <Route exact path="/">
           <Home paintings={paintings}/>
