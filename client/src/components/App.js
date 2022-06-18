@@ -7,6 +7,7 @@ import AddAPainting from "./AddAPainting";
 import NavBar from "./NavBar";
 import Paintings from "./Paintings";
 import PaintingDetail from "./PaintingDetail";
+import PaintingEdit from "./PaintingEdit";
 import Artists from "./Artists";
 import '../App.css';
 
@@ -41,7 +42,10 @@ function App() {
           <Paintings paintings={paintings}/>
         </Route>
         <Route exact path="/paintings/:id">
-          <PaintingDetail/>
+          <PaintingDetail setRefresh={setRefresh} refresh={refresh} />
+        </Route>
+        <Route exact path="/paintings/:id/edit">
+          <PaintingEdit setRefresh={setRefresh} refresh={refresh} />
         </Route>
         <Route exact path="/artists">
           <Artists artists={artists}/>

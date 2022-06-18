@@ -1,4 +1,4 @@
-.add-a-painting form, .add-a-painting {
+form, .add-a-painting, .painting-edit {
   display: flex;
   flex-direction: column;
   align-items: center;
