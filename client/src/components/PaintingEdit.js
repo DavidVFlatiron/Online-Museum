@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams }from 'react-router-dom';
+import { useParams, useHistory }from 'react-router-dom';
 
 function PaintingEdit(props){
     let { id } = useParams();
@@ -10,6 +10,7 @@ function PaintingEdit(props){
     const [medium, setMedium] = useState("");
     const [yearCreated, setYearCreated] = useState("");
     const [artistId, setArtistId] = useState("");
+    let history = useHistory();
 
     useEffect(() => {
       fetch(`http://localhost:9292/paintings/${id}`)
@@ -59,6 +60,7 @@ function PaintingEdit(props){
         .then((r) => r.json())
         .then((updatedItem) => console.log(updatedItem));
         setRefresh(!refresh);
+        history.push(`/paintings/${painting.id}`)
       }
     
 

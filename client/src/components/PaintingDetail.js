@@ -1,9 +1,11 @@
-import { useParams } from 'react-router-dom'
+import { useParams, Link, useHistory } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 
 function PaintingDetail(props){
     let { id } = useParams();
     const [painting, setPainting] = useState([]);
+    const {refresh,setRefresh } = props;
+    const history = useHistory();
     const [painter,setPainter] = useState('unknown')
     useEffect(() => {
       fetch(`http://localhost:9292/paintings/${id}`)
@@ -16,6 +18,16 @@ function PaintingDetail(props){
         });
     }, []);
    
+    
+    function handleDeleteClick() {
+        fetch(`http://localhost:9292/paintings/${id}`, {
+        method: "DELETE",
+        })
+        .then((r) => r.json())
+        .then(() => console.log("deleted!"));
+        setRefresh(!refresh);
+        history.push("/");
+    }
 
     return (
     <div>
@@ -25,6 +37,8 @@ function PaintingDetail(props){
         <p>location: {painting.location}</p>
         <p>medium: {painting.medium}</p>
         <p>Year created: {painting.year_created}</p>
+        <Link to={`${painting.id}/edit`}><button>Edit</button></Link>
+        <button onClick={handleDeleteClick}>Delete</button>
     </div>)
 }
 export default PaintingDetail;
