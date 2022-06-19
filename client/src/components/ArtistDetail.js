@@ -17,10 +17,13 @@ function ArtistDetail(){
         fetch(`http://localhost:9292/artists/${id}/say_hi`)
           .then((response) => response.json())
           .then((data) => {
-            console.log( data);
+            setResponse(data.message);
           });
 
       }, []);
+      function sayHi(){
+        alert(response);
+      }
     return (
     <div className="artist-detail">
         <h2>{artist.name}</h2>
@@ -28,6 +31,7 @@ function ArtistDetail(){
         <p>art movement: {artist.art_movement}</p>
         <p>birth place: {artist.birth_place}</p>
         <p>Birth date: {artist.birth_date}</p>
+        <button onClick={sayHi}>Say Hi</button>
     </div>)
 }
 export default ArtistDetail;
