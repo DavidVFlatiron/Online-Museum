@@ -3,6 +3,9 @@ form, .add-a-painting, .painting-edit {
   flex-direction: column;
   align-items: center;
 }
+.artist-detail img {
+  width: 200px;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;

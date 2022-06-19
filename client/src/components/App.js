@@ -9,6 +9,7 @@ import Paintings from "./Paintings";
 import PaintingDetail from "./PaintingDetail";
 import PaintingEdit from "./PaintingEdit";
 import Artists from "./Artists";
+import ArtistDetail from "./ArtistDetail";
 import '../App.css';
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
         </Route>
         <Route exact path="/artists">
           <Artists artists={artists}/>
+        </Route>
+        <Route exact path="/artists/:id">
+          <ArtistDetail/>
         </Route>
         <Route exact path="/login">
           <AddAPainting setRefresh={setRefresh} refresh={refresh} />

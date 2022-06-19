@@ -1,3 +1,4 @@
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -15,6 +16,11 @@ class ApplicationController < Sinatra::Base
     get '/artists/:id' do
       artist = Artist.find(params[:id])
       artist.to_json(include: :paintings)
+    end
+
+    get '/artists/:id/say_hi' do
+      artist = { message: Artist.find(params[:id]).say_hi }
+      artist.to_json
     end
 
     delete '/artists/:id' do
@@ -44,10 +50,6 @@ class ApplicationController < Sinatra::Base
         birth_date: params[:birth_date]
       )
       artist.to_json
-    end
-
-    get '/artists/:id/say_hi' do
-      artist = Artist.find(params[:id]).say_hi
     end
   
 
