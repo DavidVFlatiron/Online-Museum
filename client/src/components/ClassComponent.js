@@ -6,7 +6,20 @@ class ClassComponent extends React.Component {
         paintings: ""
       };
 
+    componentDidMount() {
+        this.apiCall();
+   }
 
+    apiCall() {
+    const { paintings } = this.state;
+    fetch("http://localhost:9292/paintings/1")
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({ paintings: data.name})
+        });
+  }
+
+    
 
 
   render(props) {
