@@ -10,6 +10,7 @@ import PaintingDetail from "./PaintingDetail";
 import PaintingEdit from "./PaintingEdit";
 import Artists from "./Artists";
 import ArtistDetail from "./ArtistDetail";
+import ClassComponent from './ClassComponent';
 import '../App.css';
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <Route exact path="/login">
           <AddAPainting setRefresh={setRefresh} refresh={refresh} />
+        </Route>
+        <Route exact path="/class-component">
+          <ClassComponent title={"hi"} content={"hows it going!"}/>
         </Route>
         <Route exact path="/">
           <Home paintings={paintings}/>
