@@ -1,17 +1,15 @@
 import { useParams, Link, useHistory } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 
-function ArtistDetail(){
+function ArtistDetail(props){
+    const { artists} = props;
     let { id } = useParams();
     const [artist,setArtist] = useState("");
     const [response, setResponse] = useState("Hi!")
+
     useEffect(() => {
-        fetch(`http://localhost:9292/artists/${id}`)
-          .then((response) => response.json())
-          .then((data) => {
-            setArtist(data);
-          });
-      }, []);
+      artists.map((artist)=>artist.id==id ? setArtist(artist) : null) 
+    }, []);
 
       useEffect(() => {
         fetch(`http://localhost:9292/artists/${id}/say_hi`)

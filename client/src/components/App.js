@@ -31,7 +31,6 @@ function App() {
             setArtists(data);
           });
       }, []);
-    console.log(paintings);
 
   return (
     <div className="app">
@@ -53,7 +52,7 @@ function App() {
           <Artists artists={artists}/>
         </Route>
         <Route exact path="/artists/:id">
-          <ArtistDetail/>
+          <ArtistDetail artists={artists}/>
         </Route>
         <Route exact path="/login">
           <AddAPainting setRefresh={setRefresh} refresh={refresh} />

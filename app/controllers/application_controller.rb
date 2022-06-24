@@ -60,6 +60,16 @@ class ApplicationController < Sinatra::Base
     paintings.to_json
   end
 
+  get '/modern-paintings' do
+    paintings = Painting.find_by(year_created: "1065-09-27")
+    paintings.to_json
+  end
+
+  get '/define-art' do
+    definition = Painting.define
+    { message: definition }.to_json
+  end
+
   get '/paintings/:id' do
     painting = Painting.find(params[:id])
     painting.to_json(include: :artist)
@@ -79,6 +89,22 @@ class ApplicationController < Sinatra::Base
       year_created: params[:year_created],
       artist_id: params[:artist_id]
     )
+    painting.to_json
+  end
+
+  post '/paintings-association' do
+    painting = Painting.create(
+      name: params[:name],
+      location: params[:location],
+      medium: params[:medium],
+      year_created: params[:year_created]
+    )
+      painting.create_artist(
+      name: params[:artist_name],
+      art_movement: params[:artist_art_movement],
+      birth_place: params[:artist_birth_place],
+      birth_date: params[:artist_birth_date]
+      )
     painting.to_json
   end
 
