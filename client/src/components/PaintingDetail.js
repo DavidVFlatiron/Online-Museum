@@ -4,18 +4,11 @@ import React, { useState, useEffect } from "react";
 function PaintingDetail(props){
     let { id } = useParams();
     const [painting, setPainting] = useState([]);
-    const {refresh,setRefresh } = props;
+    const {refresh,setRefresh,paintings } = props;
     const history = useHistory();
     const [painter,setPainter] = useState('unknown')
     useEffect(() => {
-      fetch(`http://localhost:9292/paintings/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPainting(data);
-          if (data.artist){
-            setPainter(data.artist.name)
-          }
-        });
+      paintings.map((painting)=>painting.id==id ? setPainting(painting) : null) 
     }, []);
    
     

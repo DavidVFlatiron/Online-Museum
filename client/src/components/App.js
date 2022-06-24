@@ -43,7 +43,7 @@ function App() {
           <Paintings paintings={paintings}/>
         </Route>
         <Route exact path="/paintings/:id">
-          <PaintingDetail setRefresh={setRefresh} refresh={refresh} />
+          <PaintingDetail paintings={paintings} setRefresh={setRefresh} refresh={refresh} />
         </Route>
         <Route exact path="/paintings/:id/edit">
           <PaintingEdit setRefresh={setRefresh} refresh={refresh} />
