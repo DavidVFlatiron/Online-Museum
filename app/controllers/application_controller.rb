@@ -57,7 +57,7 @@ class ApplicationController < Sinatra::Base
 
   get '/paintings' do
     paintings = Painting.all
-    paintings.to_json
+    paintings.to_json(include: :artist)
   end
 
   get '/modern-paintings' do

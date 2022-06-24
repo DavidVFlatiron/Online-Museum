@@ -9,6 +9,7 @@ function PaintingDetail(props){
     const [painter,setPainter] = useState('unknown')
     useEffect(() => {
       paintings.map((painting)=>painting.id==id ? setPainting(painting) : null) 
+      paintings.map((painting)=> setPainter(painting.artist.name)) 
     }, []);
    
     

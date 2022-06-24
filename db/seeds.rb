@@ -13,7 +13,7 @@ end
         location: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.country}",
         medium: "#{Faker::Hipster.words[0]} on #{Faker::Hipster.words[0]}", 
         year_created: Faker::Date.between(from: '1000-09-23', to: '2002-09-25'),
-        artist_id: (rand() * Artist.count).round
+        artist_id: Artist.order('RANDOM()').first.id
         )
 end
 
